@@ -6,7 +6,7 @@ void main() {
       title: 'Named Routes Demo',
       initialRoute: '/first',
       routes: {
-        '/': (context) => FirstScreen(),
+        '/first': (context) => FirstScreen(),
         '/second': (context) => SecondScreen(),
         '/third': (context) => ThirdScreen(),
       },
@@ -19,7 +19,7 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
+        title: Text("First Screen"),
       ),
       body: Center(
         child: ElevatedButton(
@@ -62,7 +62,7 @@ class ThirdScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/first');
           },
           child: const Text('Launch Screen'),
         ),
