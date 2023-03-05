@@ -1,41 +1,65 @@
+// Create a basic screen in flutter which will display a welcome message and will have 2 buttons for the light and dark mode.Clicking on those 2 buttons will change the theme
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Light/Dark Theme',
+      theme: ThemeData.light(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
+  bool click = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
-    );
+        backgroundColor: (click == false) ? Colors.black : Colors.white,
+        appBar: AppBar(
+            title: Text('Changing theme',
+                style: TextStyle(color: Color(0xff130a5f), fontSize: 30))),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Welcome to My App',
+                style: TextStyle(color: Color(0xffcfd75d), fontSize: 40)),
+            SizedBox(
+              height: 15,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  click = false;
+                  print('dark mode');
+                });
+              },
+              child: Text('Dark Theme'),
+              style:
+                  ElevatedButton.styleFrom(padding: const EdgeInsets.all(10)),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    click = true;
+                    print('light');
+                  });
+                },
+                child: Text('Light Theme'))
+          ], //children
+        )));
   }
 }
